@@ -3,7 +3,7 @@ import ms from "ms";
 import { RateLimiterMemory, RateLimiterRes } from "rate-limiter-flexible";
 import { z } from "zod";
 
-import { Command } from "#bot/Command";
+import { Command } from "#bot/command";
 import { Plugin } from "#bot/plugin";
 
 const plugin = new Plugin({

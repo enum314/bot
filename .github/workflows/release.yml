@@ -14,7 +14,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - uses: pnpm/action-setup@v2
         id: pnpm-install
@@ -43,7 +43,7 @@ jobs:
       - run: find . ! -name tsconfig.json -delete
         working-directory: plugins
 
-      - run: tar -cvzf bot.tar.gz .husky .vscode dist plugins scripts .env.example .eslintignore .eslintrc.cjs .gitignore .npmrc .prettierrc package.json pnpm-lock.yaml tsconfig.json
+      - run: tar -cvzf bot.tar.gz .husky .vscode dist plugins scripts .env.example .eslintignore .eslintrc .gitignore .npmrc .prettierrc package.json pnpm-lock.yaml tsconfig.json
 
       - run: |
           SUM=`sha256sum bot.tar.gz`
