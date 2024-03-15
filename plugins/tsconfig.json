@@ -1,0 +1,22 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"compilerOptions": {
+		"declaration": false,
+		"declarationMap": false,
+		"outDir": ".",
+		"sourceMap": false,
+		"baseUrl": "./dist",
+		"paths": {
+			"#bot/*": [
+				"exports/*"
+			]
+		}
+	},
+	"exclude": [
+		"./dist/**"
+	],
+	"extends": "../tsconfig.json",
+	"include": [
+		"."
+	]
+}

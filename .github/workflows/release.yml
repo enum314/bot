@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  push:
+    branches: [production]
+    tags:
+      - "v*.*.*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+
+      - id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - run: pnpm install
+      - run: pnpm build
+
+      - run: rm dist
+        working-directory: plugins
+
+      - run: find . ! -name tsconfig.json -delete
+        working-directory: plugins
+
+      - run: tar -cvzf bot.tar.gz .husky .vscode dist plugins scripts .env.example .eslintignore .eslintrc.cjs .gitignore .npmrc .prettierrc package.json pnpm-lock.yaml tsconfig.json
+
+      - run: |
+          SUM=`sha256sum bot.tar.gz`
+          echo $SUM > checksum.txt
+
+      - uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: |
+            bot.tar.gz
+            checksum.txt
