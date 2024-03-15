@@ -1,1 +1,1 @@
-export * from '../classes/command.js';
+export * from "../classes/command.js";
