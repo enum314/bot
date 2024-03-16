@@ -78,7 +78,7 @@ plugin.setup(async ({ configs }, deps) => {
     } catch (data) {
       if (data instanceof RateLimiterRes) {
         await interaction.reply({
-          content: placeholder.replace(lang.message, {
+          content: placeholder.render(lang.message, {
             time_remaining: ms(data.msBeforeNext),
           }),
           ephemeral: true,

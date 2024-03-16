@@ -7,7 +7,7 @@ const plugin = new Plugin({
   metadata: {
     name: "super-placeholders",
     description: "A very useful placeholder plugin.",
-    version: "1.0.2",
+    version: "1.0.3",
     author: "enum314",
     dependencies: {},
     optionalDependencies: {},
@@ -27,14 +27,14 @@ plugin.setup(async ({ configs }) => {
   Mustache.tags = mustaches as [string, string];
 
   (plugin.api as SuperPlaceholdersApi) = {
-    replace: (content: string, data: Record<string, any>): string => {
+    render: (content: string, data: Record<string, any>): string => {
       return Mustache.render(content, data);
     },
   };
 });
 
 interface SuperPlaceholdersApi {
-  replace: (content: string, data: Record<string, string>) => string;
+  render: (content: string, data: Record<string, string>) => string;
 }
 
 export default plugin as Plugin<SuperPlaceholdersApi>;

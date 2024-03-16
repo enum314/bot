@@ -84,7 +84,7 @@ plugin.setup(async ({ configs }, deps) => {
         ))
     ) {
       await interaction.reply({
-        content: placeholder.replace(lang.missing_permissions.bot, {
+        content: placeholder.render(lang.missing_permissions.bot, {
           missing_permissions: perms.clientPermissions.join(", "),
         }),
         ephemeral: true,
@@ -108,7 +108,7 @@ plugin.setup(async ({ configs }, deps) => {
       )
     ) {
       await interaction.reply({
-        content: placeholder.replace(lang.missing_permissions.user, {
+        content: placeholder.render(lang.missing_permissions.user, {
           missing_permissions: perms.userPermissions.join(", "),
         }),
         ephemeral: true,
