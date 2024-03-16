@@ -10,10 +10,10 @@ const plugin = new Plugin({
     version: "1.0.0",
     author: "enum314",
     dependencies: {
-      "@enum314/super-placeholders": "1.0.0",
+      "@enum314/super-placeholders": "^1.0.0",
     },
     optionalDependencies: {
-      "@enum314/cooldowns": "1.0.0",
+      "@enum314/cooldowns": "^1.0.0",
     },
   },
   configs: {

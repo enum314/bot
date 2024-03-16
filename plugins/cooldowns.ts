@@ -13,7 +13,7 @@ const plugin = new Plugin({
     version: "1.0.0",
     author: "enum314",
     dependencies: {
-      "@enum314/super-placeholders": "1.0.0",
+      "@enum314/super-placeholders": "^1.0.0",
     },
     optionalDependencies: {},
   },
