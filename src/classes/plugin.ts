@@ -16,10 +16,28 @@ const PluginName = z.string().refine((arg) => /^[A-Za-z0-9_-]+$/.test(arg), {
     "Plugin name should contain only alphanumeric characters, hyphens, or underscores.",
 });
 
-const PluginVersion = z.string().refine((arg) => semverRegex().test(arg), {
-  message:
-    "Plugin version should match the semver format. (https://semver.org/)",
-});
+const PluginVersion = z.string().refine(
+  (arg) => {
+    if (arg.startsWith(">=") || arg.startsWith("<=")) {
+      return semverRegex().test(arg.slice(2));
+    }
+
+    if (
+      arg.startsWith("^") ||
+      arg.startsWith("~") ||
+      arg.startsWith(">") ||
+      arg.startsWith("<")
+    ) {
+      return semverRegex().test(arg.slice(1));
+    }
+
+    return semverRegex().test(arg);
+  },
+  {
+    message:
+      "Plugin version should match the semver format. (https://semver.org/)",
+  }
+);
 
 const PluginAuthor = z.string().refine((arg) => /^[a-z0-9]+$/.test(arg), {
   message: "Plugin author should be lowercase alphanumeric with no spaces.",
