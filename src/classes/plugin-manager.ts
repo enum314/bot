@@ -82,7 +82,7 @@ export class PluginManager {
         for (const [dependency] of Object.entries(
           plugin.optionalDependencies
         )) {
-          if (this.has(dependency)) {
+          if (this.has(dependency.split("/")[1])) {
             this.graph.addEdge(plugin.name, dependency.split("/")[1]);
           }
         }
