@@ -61,7 +61,7 @@ plugin.setup(async ({ configs }, deps) => {
     new Command(
       plugin,
       new SlashCommandBuilder().setName("ping").setDescription("Ping!")
-    ).dispatch(async (interaction) => {
+    ).run(async (interaction) => {
       await interaction.reply("Pong!");
     })
   );

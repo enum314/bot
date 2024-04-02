@@ -157,8 +157,35 @@ export default class Dispatcher {
       this.awaiting.add(interaction.user.id);
 
       if (!(await this.inihibit(interaction, command))) {
-        await command.handler(interaction);
+        await command.runner(interaction);
       }
+
+      this.awaiting.delete(interaction.user.id);
+    });
+
+    this.client.on("interactionCreate", async (interaction) => {
+      if (
+        interaction.user.bot ||
+        this.awaiting.has(interaction.user.id) ||
+        !interaction.isAutocomplete() ||
+        !interaction.inCachedGuild()
+      ) {
+        return;
+      }
+
+      const command = this.client.commands.get(interaction.commandName);
+
+      if (!command) {
+        return;
+      }
+
+      if (!command.autocompleter) {
+        return;
+      }
+
+      this.awaiting.add(interaction.user.id);
+
+      await command.autocompleter(interaction);
 
       this.awaiting.delete(interaction.user.id);
     });

@@ -206,17 +206,33 @@ export class Plugin<
   }
 
   public addCommand(command: Command) {
-    const handler = command.handler;
+    const runner = command.runner;
 
-    command.dispatch(async (interaction) => {
+    command.run(async (interaction) => {
       try {
-        return handler(interaction);
+        return runner(interaction);
       } catch (err) {
         this.logger.error(`Command - ${interaction.commandName}`).error(err);
 
         this.errorFn(err);
       }
     });
+
+    const autocompleter = command.autocompleter;
+
+    if (autocompleter) {
+      command.autocomplete(async (interaction) => {
+        try {
+          return autocompleter(interaction);
+        } catch (err) {
+          this.logger
+            .error(`Autocomplete - ${interaction.commandName}`)
+            .error(err);
+
+          this.errorFn(err);
+        }
+      });
+    }
 
     this.commands = [
       ...this.commands.filter(
