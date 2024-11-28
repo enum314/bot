@@ -55,7 +55,7 @@
         "husky": "^9.0.11",
         "javascript-obfuscator": "^4.1.0",
         "prettier": "^3.2.5",
-        "rimraf": "^5.0.5",
+        "rimraf": "^6.0.0",
         "tsc-watch": "^6.0.4",
         "typescript": "^5.4.2"
     },
