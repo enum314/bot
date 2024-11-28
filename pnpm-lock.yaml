@@ -43,7 +43,7 @@ importers:
         version: 5.0.0(winston@3.13.0)
       yaml:
         specifier: ^2.4.1
-        version: 2.4.1
+        version: 2.6.1
       zod:
         specifier: ^3.22.4
         version: 3.23.8
@@ -1672,8 +1672,8 @@ packages:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}
     engines: {node: '>=10'}
 
-  yaml@2.4.1:
-    resolution: {integrity: sha512-pIXzoImaqmfOrL7teGUBt/T7ZDnyeGBWyXQBvOVhLkWLN37GXv8NMLK406UY6dS51JfcQHsmcW5cJ441bHg6Lg==}
+  yaml@2.6.1:
+    resolution: {integrity: sha512-7r0XPzioN/Q9kXBro/XPnA6kznR73DHq+GXh5ON7ZozRO6aMjbmiBuKste2wslTFkC5d1dw0GooOCepZXJ2SAg==}
     engines: {node: '>= 14'}
     hasBin: true
 
@@ -3318,7 +3318,7 @@ snapshots:
 
   y18n@5.0.8: {}
 
-  yaml@2.4.1: {}
+  yaml@2.6.1: {}
 
   yargs-parser@21.1.1: {}
 
